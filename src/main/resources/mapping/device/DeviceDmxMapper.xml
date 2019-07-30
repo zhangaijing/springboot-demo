@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyy.taskmanage.dao.mapper.DeviceDmxMapper">
+  <resultMap id="BaseResultMap" type="com.zyy.taskmanage.dao.model.DeviceDmx">
+    <!--
+    @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="online_node_num" jdbcType="INTEGER" property="onlineNodeNum" />
+    <result column="controller_num" jdbcType="INTEGER" property="controllerNum" />
+    <result column="program_config_id" jdbcType="BIGINT" property="programConfigId" />
+    <result column="width" jdbcType="INTEGER" property="width" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+    @mbg.generated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+    @mbg.generated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+    @mbg.generated
+    -->
+    id, online_node_num, controller_num, program_config_id, width, height
+  </sql>
+  <select id="selectByExample" parameterType="com.zyy.taskmanage.dao.model.DeviceDmxExample" resultMap="BaseResultMap">
+    <!--
+    @mbg.generated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from device_dmx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--
+    @mbg.generated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from device_dmx
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--
+    @mbg.generated
+    -->
+    delete from device_dmx
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zyy.taskmanage.dao.model.DeviceDmxExample">
+    <!--
+    @mbg.generated
+    -->
+    delete from device_dmx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zyy.taskmanage.dao.model.DeviceDmx" useGeneratedKeys="true">
+    <!--
+    @mbg.generated
+    -->
+    insert into device_dmx (online_node_num, controller_num, program_config_id, 
+      width, height)
+    values (#{onlineNodeNum,jdbcType=INTEGER}, #{controllerNum,jdbcType=INTEGER}, #{programConfigId,jdbcType=BIGINT}, 
+      #{width,jdbcType=INTEGER}, #{height,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zyy.taskmanage.dao.model.DeviceDmx" useGeneratedKeys="true">
+    <!--
+    @mbg.generated
+    -->
+    insert into device_dmx
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="onlineNodeNum != null">
+        online_node_num,
+      </if>
+      <if test="controllerNum != null">
+        controller_num,
+      </if>
+      <if test="programConfigId != null">
+        program_config_id,
+      </if>
+      <if test="width != null">
+        width,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="onlineNodeNum != null">
+        #{onlineNodeNum,jdbcType=INTEGER},
+      </if>
+      <if test="controllerNum != null">
+        #{controllerNum,jdbcType=INTEGER},
+      </if>
+      <if test="programConfigId != null">
+        #{programConfigId,jdbcType=BIGINT},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zyy.taskmanage.dao.model.DeviceDmxExample" resultType="java.lang.Long">
+    <!--
+    @mbg.generated
+    -->
+    select count(*) from device_dmx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+    @mbg.generated
+    -->
+    update device_dmx
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.onlineNodeNum != null">
+        online_node_num = #{record.onlineNodeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.controllerNum != null">
+        controller_num = #{record.controllerNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.programConfigId != null">
+        program_config_id = #{record.programConfigId,jdbcType=BIGINT},
+      </if>
+      <if test="record.width != null">
+        width = #{record.width,jdbcType=INTEGER},
+      </if>
+      <if test="record.height != null">
+        height = #{record.height,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+    @mbg.generated
+    -->
+    update device_dmx
+    set id = #{record.id,jdbcType=BIGINT},
+      online_node_num = #{record.onlineNodeNum,jdbcType=INTEGER},
+      controller_num = #{record.controllerNum,jdbcType=INTEGER},
+      program_config_id = #{record.programConfigId,jdbcType=BIGINT},
+      width = #{record.width,jdbcType=INTEGER},
+      height = #{record.height,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zyy.taskmanage.dao.model.DeviceDmx">
+    <!--
+    @mbg.generated
+    -->
+    update device_dmx
+    <set>
+      <if test="onlineNodeNum != null">
+        online_node_num = #{onlineNodeNum,jdbcType=INTEGER},
+      </if>
+      <if test="controllerNum != null">
+        controller_num = #{controllerNum,jdbcType=INTEGER},
+      </if>
+      <if test="programConfigId != null">
+        program_config_id = #{programConfigId,jdbcType=BIGINT},
+      </if>
+      <if test="width != null">
+        width = #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zyy.taskmanage.dao.model.DeviceDmx">
+    <!--
+    @mbg.generated
+    -->
+    update device_dmx
+    set online_node_num = #{onlineNodeNum,jdbcType=INTEGER},
+      controller_num = #{controllerNum,jdbcType=INTEGER},
+      program_config_id = #{programConfigId,jdbcType=BIGINT},
+      width = #{width,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
